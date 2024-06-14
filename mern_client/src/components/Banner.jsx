@@ -3,7 +3,7 @@ import BannerCard from "../Home/BannerCard";
 const Banner = () => {
   return (
     <div className="px-4 lg:px-24 bg-teal-100 flex items-center">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-12 py-40">
+      <div className="flex w-full flex-col md:flex-row justify-between items-center gap-12 py-40">
         <div className="md:w-1/2 space-y-8 h-full ">
           <h2 className="text-5xl font-bold leading-sung text-black">
             Buy and Sell your Books{" "}
@@ -29,9 +29,11 @@ const Banner = () => {
             </button>
           </div>
         </div>
-        <div>right side</div>
+        {/* <div>right side</div> */}
+        <div>
+          <BannerCard />
+        </div>
       </div>
-      <BannerCard />
     </div>
   );
 };
