@@ -59,6 +59,7 @@ async function run() {
       }
       const result = await bookCollections.find(query).toArray();
       res.send(result);
+      // console.log(result);
     });
 
     // update a books method

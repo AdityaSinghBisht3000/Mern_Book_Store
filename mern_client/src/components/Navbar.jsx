@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // react icons
 import { FaBarsStaggered, FaBlog, FaXmark } from "react-icons/fa6";
+import { AuthContext } from "../Context/AuthProvider";
 
 const Navbar = () => {
   const [isMenuOpen, setisMenuOpen] = useState(false);
   const [isSticky, setisSticky] = useState(false);
-
+  const { user } = useContext(AuthContext);
   const toggleMenu = () => {
     setisMenuOpen(!isMenuOpen);
   };
@@ -59,15 +60,15 @@ const Navbar = () => {
           isSticky ? "sticky top-0 left-0 right-0 bg-white shadow-md" : ""
         }`}
       >
-        <div className="flex justify-between items-center text-base gap-8">
+        <div className="flex items-center justify-between gap-8 text-base">
           <Link
             to="/"
-            className="text-2xl font-bold text-blue-700 flex items-center gap-2"
+            className="flex items-center gap-2 text-2xl font-bold text-blue-700"
           >
             <FaBlog className="inline-block" />
             Books
           </Link>
-          <ul className="md:flex space-x-12 hidden">
+          <ul className="hidden space-x-12 md:flex">
             {navItems.map(({ link, path }) => (
               <li key={path}>
                 <Link
@@ -79,10 +80,11 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="space-x-12 hidden lg:flex items-center">
+          <div className="items-center hidden space-x-12 lg:flex">
             <button>
               <FaBarsStaggered className="w-5 hover:text-blue-700" />
             </button>
+            {user ? user.email : ""}
           </div>
           <div className="md:hidden">
             <button
@@ -90,9 +92,9 @@ const Navbar = () => {
               className="text-black focus:outline-none"
             >
               {isMenuOpen ? (
-                <FaXmark className="h-5 w-5 text-black" />
+                <FaXmark className="w-5 h-5 text-black" />
               ) : (
-                <FaBarsStaggered className="h-5 w-5 text-black" />
+                <FaBarsStaggered className="w-5 h-5 text-black" />
               )}
             </button>
           </div>
